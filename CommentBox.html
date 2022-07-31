@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    body {background-color:#73b8ed;}
+
+    #comment {
+  border: thick solid rgb(0, 255, 42);
+}
+</style>
+</style>
+<body>
+    <p><h1>We would love to hear your opinion <3</h1></p>
+    <p>Your comment and name will be displayed. We never display our visitors' email addresses.
+
+        <form id="form1" >
+            <label for="name"> name:</label><br>
+        
+            <input type="text" id="name" name="name" ><br>
+            <label for="email"> email:</label><br>
+        
+            <input type="email" id="email" name="email" ><br>
+            <label for="Comment"> Comment:</label><br>
+        
+            <textarea id="comment" name="Comment" onKeyUp=check() value="" maxlength = "140" />
+        </textarea>
+            <br>  <br>
+        
+            <input type="submit" value="Submit">
+          </form> 
+          
+          </p>
+          <p id="postedcomment"></p>
+<p id="counter"></p>
+
+<div id=warning></div>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+
+    <script>
+        document.getElementById("form1").addEventListener("submit", function(e){
+    
+        e.preventDefault();   
+        document.getElementById("postedcomment").innerHTML=document.getElementById("comment").value + "<br> by: " + name;
+
+
+    
+});
+
+    
+var name = document.getElementById("name").value;
+
+
+function check() {
+    stringLength = document.getElementById('comment').value.length;
+    if (stringLength >= 140) {
+         document.getElementById('warning').innerText = "Maximum characters allowed are 140"
+    } else {
+        document.getElementById('warning').innerText = ""
+    } countChars()
+} 
+
+function countChars() {console.log("debug1");
+  var len = document.getElementById("comment").value.length;
+  console.log (len)
+  document.getElementById("counter").innerHTML = len+"/140";
+  console.log()
+}
+
+document.getElementById("comment").addEventListener("keydown", function(){
+    var elem = document.getElementById("comment");
+  let val = elem.value.length;
+  console.log("val:",val);
+  console.log("this:", this);
+  if(val < 140){
+    elem.style.borderColor = "rgb(0, 255, 42)";
+  }
+  else if(val >= 140){
+    console.log("debug red");
+    elem.style.borderColor = "red";
+  }
+
+})
+
+document.querySelector('#comment').addEventListener('keydown',function(){
+    var elem = document.getElementById("comment");
+  let val = elem.value.length;
+  console.log("val:",val);
+  console.log("this:", this);
+  if(val < 140){
+document.querySelector(elem).css({"border-color": "rgb(0, 255, 42)"});
+  }
+  else if(val >= 140){
+    console.log("debug red");
+    document.querySelector("#comment").css({"border-color": "red"});
+  }
+
+})
+
+</script>
+</body>
+</html>
